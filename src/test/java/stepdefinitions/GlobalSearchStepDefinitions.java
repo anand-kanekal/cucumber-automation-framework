@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Properties;
 
-public class GlobalSearchStepDefs {
+public class GlobalSearchStepDefinitions {
 
     private static Properties browserProperties;
 
