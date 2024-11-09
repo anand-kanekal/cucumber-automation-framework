@@ -1,14 +1,11 @@
-package com.automation.framework.utils;
+package com.automation.framework.core.browser;
 
 import com.automation.framework.constants.Path;
-import com.automation.framework.handler.DriverHandler;
+import com.automation.framework.core.utils.PropertyFileManager;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +16,6 @@ import java.util.Properties;
 public class BrowserManager {
 
 	private static BrowserManager browserManager;
-
-	private WebDriver driver;
 	private ChromeOptions chromeOptions;
 	private static final Properties browserProperties;
 
@@ -30,9 +25,7 @@ public class BrowserManager {
 				Path.TEST_RESOURCES + File.separator + "config" + File.separator + "browser.properties");
 	}
 
-	private BrowserManager() {
-
-	}
+	private BrowserManager() {}
 
 	/**
 	 * Get browserManager instance
@@ -53,7 +46,7 @@ public class BrowserManager {
 	 * 
 	 * @author Anand Kanekal
 	 */
-	private void setChromeOptions() {
+	protected void setChromeOptions() {
 		String headless = browserProperties.getProperty("headless").toLowerCase().trim();
 		String incognito = browserProperties.getProperty("incognito").toLowerCase().trim();
 		String acceptInsecureCerts = browserProperties.getProperty("accept.insecure.certs").toLowerCase().trim();
@@ -83,7 +76,7 @@ public class BrowserManager {
 	 * @return chromeOptions
 	 * @author Anand Kanekal
 	 */
-	private ChromeOptions getChromeOptions() {
+	protected ChromeOptions getChromeOptions() {
 		return chromeOptions;
 	}
 
@@ -93,28 +86,9 @@ public class BrowserManager {
 	 * @author Anand Kanekal
 	 */
 	public void openBrowser() {
-		String browser = browserProperties.getProperty("browser").toLowerCase().trim();
-
-		switch (browser) {
-		case "chrome":
-			setChromeOptions();
-			driver = new ChromeDriver(getChromeOptions());
-			break;
-		case "firefox":
-			driver = new FirefoxDriver();
-			break;
-		case "edge":
-			driver = new EdgeDriver();
-			break;
-
-		default:
-			System.out.println("Invalid browser name specified in browser.properties present at location "
-					+ Path.TEST_RESOURCES + File.separator + "config");
-		}
-
-		DriverHandler.setDriver(driver);
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
+		WebDriverFactory.createDriver();
+		DriverHandler.getDriver().manage().deleteAllCookies();
+		DriverHandler.getDriver().manage().window().maximize();
 	}
 
 	/**
@@ -123,7 +97,7 @@ public class BrowserManager {
 	 * @author Anand Kanekal
 	 */
 	public void closeBrowser() {
-		getDriver().quit();
+		DriverHandler.getDriver().quit();
 	}
 
 	/**
@@ -131,19 +105,18 @@ public class BrowserManager {
 	 * 
 	 * @return driver
 	 * @author Anand Kanekal
-	 */
+	 *//*
 	public WebDriver getDriver() {
 		if (Objects.nonNull(DriverHandler.getDriver())) {
 			return DriverHandler.getDriver();
 		}
 
 		throw new RuntimeException("Driver is not initialized");
-	}
+	}*/
 
 	/**
 	 * Kill driver process
-	 * 
-	 * @param processName
+	 *
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @author Anand Kanekal
@@ -151,12 +124,14 @@ public class BrowserManager {
 	public void killDriverProcess() throws IOException, InterruptedException {
 		String browser = browserProperties.getProperty("browser").toLowerCase().trim();
 
-		String command = "taskkill /F /IM %s";
+		if (SystemUtils.IS_OS_WINDOWS) {
+			String command = "taskkill /F /IM %s";
 
-		if (browser.equalsIgnoreCase("chrome")) {
-			command = String.format(command, "chromedriver.exe");
-			Runtime.getRuntime().exec(command);
-			Thread.sleep(3000);
+			if (browser.equalsIgnoreCase("chrome")) {
+				command = String.format(command, "chromedriver.exe");
+				Runtime.getRuntime().exec(command);
+				Thread.sleep(3000);
+			}
 		}
 	}
 }

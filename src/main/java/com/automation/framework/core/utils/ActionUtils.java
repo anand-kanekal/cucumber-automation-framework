@@ -1,5 +1,7 @@
-package com.automation.framework.utils;
+package com.automation.framework.core.utils;
 
+import com.automation.framework.core.browser.BrowserManager;
+import com.automation.framework.core.browser.DriverHandler;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -17,9 +19,7 @@ public class ActionUtils {
     public static final int NORMAL_TIMEOUT = 30;
     public static final int LONG_TIMEOUT = 60;
 
-    private ActionUtils() {
-
-    }
+    private ActionUtils() {}
 
     /**
      * Waits for the visibility of web element
@@ -30,7 +30,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static WebElement waitForVisibilityOf(WebElement element, int timeout) {
-        return new WebDriverWait(BrowserManager.getInstance().getDriver(), Duration.ofSeconds(timeout))
+        return new WebDriverWait(DriverHandler.getDriver(), Duration.ofSeconds(timeout))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -43,7 +43,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static List<WebElement> waitForVisibilityOfAll(List<WebElement> elements, int timeout) {
-        return new WebDriverWait(BrowserManager.getInstance().getDriver(), Duration.ofSeconds(timeout))
+        return new WebDriverWait(DriverHandler.getDriver(), Duration.ofSeconds(timeout))
                 .until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
@@ -56,7 +56,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static boolean waitForInvisibilityOf(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(BrowserManager.getInstance().getDriver(), Duration.ofSeconds(timeout));
+        WebDriverWait wait = new WebDriverWait(DriverHandler.getDriver(), Duration.ofSeconds(timeout));
 
         return wait.until(ExpectedConditions.invisibilityOf(element));
     }
@@ -80,9 +80,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static void mouseClickOn(WebElement element) {
-        Actions action = new Actions(BrowserManager.getInstance().getDriver());
-
-        action.moveToElement(element).click().build().perform();
+        new Actions(DriverHandler.getDriver()).moveToElement(element).click().build().perform();
     }
 
     /**
@@ -92,7 +90,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static void mouseHoverOn(WebElement element) {
-        Actions action = new Actions(BrowserManager.getInstance().getDriver());
+        Actions action = new Actions(DriverHandler.getDriver());
 
         action.moveToElement(element).build().perform();
     }
@@ -104,7 +102,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static void javaScriptClickOn(WebElement element) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) BrowserManager.getInstance().getDriver();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverHandler.getDriver();
         jsExecutor.executeScript("arguments[0].click();", element);
     }
 
@@ -122,7 +120,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static void scrollTo(WebElement element) {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) BrowserManager.getInstance().getDriver();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverHandler.getDriver();
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
@@ -132,7 +130,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static void scrollToBottom() {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) BrowserManager.getInstance().getDriver();
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverHandler.getDriver();
         jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
@@ -143,7 +141,7 @@ public class ActionUtils {
      * @author Anand Kanekal
      */
     public static String getBase64Screenshot() {
-        TakesScreenshot takesScreenshot = (TakesScreenshot) BrowserManager.getInstance().getDriver();
+        TakesScreenshot takesScreenshot = (TakesScreenshot) DriverHandler.getDriver();
         return takesScreenshot.getScreenshotAs(OutputType.BASE64);
     }
 }

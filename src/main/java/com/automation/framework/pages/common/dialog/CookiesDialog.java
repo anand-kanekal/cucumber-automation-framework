@@ -1,6 +1,6 @@
 package com.automation.framework.pages.common.dialog;
 
-import com.automation.framework.utils.ActionUtils;
+import com.automation.framework.core.utils.ActionUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

@@ -1,12 +1,12 @@
 package stepdefinitions;
 
 import com.automation.framework.constants.Path;
-import com.automation.framework.handler.DriverHandler;
+import com.automation.framework.core.browser.DriverHandler;
 import com.automation.framework.pages.common.MenuComponent;
 import com.automation.framework.pages.common.SearchComponent;
 import com.automation.framework.pages.common.dialog.CookiesDialog;
-import com.automation.framework.utils.BrowserManager;
-import com.automation.framework.utils.PropertyFileManager;
+import com.automation.framework.core.browser.BrowserManager;
+import com.automation.framework.core.utils.PropertyFileManager;
 import dev.failsafe.internal.util.Assert;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,9 +20,9 @@ import java.io.File;
 import java.util.List;
 import java.util.Properties;
 
-public class GlobalSearchStepDefinitions {
+public class GlobalSearchStepDefs {
 
-    private static Properties browserProperties;
+    private static final Properties browserProperties;
 
     WebDriver driver;
 
