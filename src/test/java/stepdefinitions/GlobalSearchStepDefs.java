@@ -24,8 +24,6 @@ public class GlobalSearchStepDefs {
 
     private static final Properties browserProperties;
 
-    WebDriver driver;
-
     MenuComponent menuComponent;
     SearchComponent searchComponent;
 
@@ -34,21 +32,15 @@ public class GlobalSearchStepDefs {
         PropertyFileManager.getInstance().loadProperties(browserProperties, Path.MAIN_RESOURCES + File.separator + "config" + File.separator + "application.properties");
     }
 
-    @Before
-    public void setUpBrowser() {
-        BrowserManager.getInstance().openBrowser();
-        driver = DriverHandler.getDriver();
-    }
-
     @Given("the user is on Cucumber home page")
     public void the_user_is_on_cucumber_home_page() {
-        driver.get(browserProperties.getProperty("url"));
+        DriverHandler.getDriver().get(browserProperties.getProperty("url"));
     }
 
     @When("the user clicks on search")
     public void the_user_clicks_on_search() {
-        menuComponent = new MenuComponent(driver);
-        CookiesDialog cookiesDialog = new CookiesDialog(driver);
+        menuComponent = new MenuComponent(DriverHandler.getDriver());
+        CookiesDialog cookiesDialog = new CookiesDialog(DriverHandler.getDriver());
 
         // Dismiss cookie settings
         cookiesDialog.waitForCookiesDialog()
@@ -60,7 +52,7 @@ public class GlobalSearchStepDefs {
 
     @When("enters search text")
     public void enters_search_text() {
-        searchComponent = new SearchComponent(driver);
+        searchComponent = new SearchComponent(DriverHandler.getDriver());
         searchComponent.enterSearchText("Cucumber for Jira");
     }
 
@@ -68,10 +60,5 @@ public class GlobalSearchStepDefs {
     public void search_results_should_be_loaded() {
        List<WebElement> searchResults = searchComponent.getSearchResults();
        Assert.isTrue(!searchResults.isEmpty(), "Search results are not loaded");
-    }
-
-    @After
-    public void after() {
-        driver.close();
     }
 }
