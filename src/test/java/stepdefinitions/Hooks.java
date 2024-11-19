@@ -22,12 +22,11 @@ public class Hooks {
 
     @After
     public void after() {
-        DriverHandler.getDriver().close();
+        BrowserManager.getInstance().closeBrowser();
     }
 
     @AfterAll
     public static void afterAll() {
-        BrowserManager.getInstance().closeBrowser();
         DriverHandler.unload();
         System.out.println("After all executed");
     }
