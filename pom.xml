@@ -70,7 +70,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <rerunFailingTestsCount>2</rerunFailingTestsCount>
+                    <rerunFailingTestsCount>1</rerunFailingTestsCount>
                     <properties>
                         <configurationParameters>
                             cucumber.junit-platform.naming-strategy=long

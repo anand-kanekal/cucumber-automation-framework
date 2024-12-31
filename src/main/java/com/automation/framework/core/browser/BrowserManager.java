@@ -99,7 +99,7 @@ public class BrowserManager {
 	 * @author Anand Kanekal
 	 */
 	public void closeBrowser() {
-		DriverHandler.getDriver().quit();
+		DriverHandler.getDriver().close();
 	}
 
 	/**

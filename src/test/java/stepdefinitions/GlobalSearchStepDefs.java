@@ -5,15 +5,11 @@ import com.automation.framework.core.browser.DriverHandler;
 import com.automation.framework.pages.common.MenuComponent;
 import com.automation.framework.pages.common.SearchComponent;
 import com.automation.framework.pages.common.dialog.CookiesDialog;
-import com.automation.framework.core.browser.BrowserManager;
 import com.automation.framework.core.utils.PropertyFileManager;
 import dev.failsafe.internal.util.Assert;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
@@ -48,6 +44,7 @@ public class GlobalSearchStepDefs {
                      .clickOnDenyAll();
 
         menuComponent.clickOnSearch();
+        throw new RuntimeException("Intentional failure");
     }
 
     @When("enters search text")
