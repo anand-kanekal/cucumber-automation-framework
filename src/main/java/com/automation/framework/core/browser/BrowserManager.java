@@ -86,7 +86,9 @@ public class BrowserManager {
 	 * @author Anand Kanekal
 	 */
 	public void openBrowser() {
-		WebDriverFactory.createDriver();
+		String browser = browserProperties.getProperty("browser").toLowerCase().trim();
+		
+		WebDriverFactory.createDriver(browser);
 		DriverHandler.getDriver().manage().deleteAllCookies();
 		DriverHandler.getDriver().manage().window().maximize();
 	}
