@@ -6,6 +6,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
 public class EmailUtils {
@@ -15,10 +16,6 @@ public class EmailUtils {
     static {
         emailProperties = new Properties();
         PropertyFileManager.getInstance().loadProperties(emailProperties, Path.MAIN_RESOURCES + File.separator + "config" + File.separator + "email.properties");
-    }
-
-    public static void main(String[] args) throws MessagingException {
-        sendEmail();
     }
 
     public static void sendEmail() throws MessagingException {
@@ -31,7 +28,13 @@ public class EmailUtils {
         Session session = authenticateCredentials(username, password);
 
         MimeMessage mimeMessage = new MimeMessage(session);
-        mimeMessage.setFrom(new InternetAddress(sender));
+
+        if (!((Objects.isNull(sender) || sender.equalsIgnoreCase("")))) {
+            mimeMessage.setFrom(new InternetAddress(sender));
+        } else {
+            throw new RuntimeException("No sender defined in email.properties");
+        }
+
         addToRecipients(mimeMessage);
         addCCRecipients(mimeMessage);
         mimeMessage.setSubject(subject, "charset=utf-8");
@@ -50,7 +53,13 @@ public class EmailUtils {
         Session session = authenticateCredentials(username, password);
 
         MimeMessage mimeMessage = new MimeMessage(session);
-        mimeMessage.setFrom(new InternetAddress(sender));
+
+        if (!((Objects.isNull(sender) || sender.equalsIgnoreCase("")))) {
+            mimeMessage.setFrom(new InternetAddress(sender));
+        } else {
+            throw new RuntimeException("No sender defined in email.properties");
+        }
+
         addToRecipients(mimeMessage);
         addCCRecipients(mimeMessage);
         mimeMessage.setSubject(subject, "charset=utf-8");
@@ -105,7 +114,7 @@ public class EmailUtils {
       if (internetAddresses.length != 0) {
           mimeMessage.setRecipients(Message.RecipientType.TO, internetAddresses);
       } else {
-          throw new RuntimeException("No To recipients added in email.properties");
+          throw new RuntimeException("No To recipients defined in email.properties");
       }
     }
 
