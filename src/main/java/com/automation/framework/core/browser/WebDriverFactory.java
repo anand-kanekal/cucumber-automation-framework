@@ -22,12 +22,10 @@ public class WebDriverFactory {
 
     private WebDriverFactory() {}
 
-    public static WebDriver createDriver() {
+    public static WebDriver createDriver(String browserName) {
         WebDriver driver;
 
-        String browser = browserProperties.getProperty("browser").toLowerCase().trim();
-
-        switch (browser) {
+        switch (browserName.toLowerCase()) {
             case "chrome":
                 BrowserManager.getInstance().setChromeOptions();
                 driver = new ChromeDriver(BrowserManager.getInstance().getChromeOptions());

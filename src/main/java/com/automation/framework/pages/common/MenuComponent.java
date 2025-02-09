@@ -10,7 +10,7 @@ public class MenuComponent {
     WebDriver driver;
 
     @FindBy(css = "li[class='nav-item nav-item-search']>a")
-    public static WebElement SEARCH_BUTTON;
+    public WebElement SEARCH_BUTTON;
 
     public MenuComponent(WebDriver driver) {
         this.driver = driver;

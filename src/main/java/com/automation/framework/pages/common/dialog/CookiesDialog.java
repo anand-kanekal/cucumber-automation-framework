@@ -9,13 +9,13 @@ import org.openqa.selenium.support.PageFactory;
 public class CookiesDialog {
 
     @FindBy(css = "div[aria-describedby='ch2-dialog-description'][role='dialog']")
-    public static WebElement COOKIES_DIALOG;
+    public WebElement COOKIES_DIALOG;
 
     @FindBy(xpath = "//button[text()='Cookie settings']")
-    public static WebElement COOKIES_SETTINGS_BUTTON;
+    public WebElement COOKIES_SETTINGS_BUTTON;
 
     @FindBy(xpath = "//button[text()='Deny all']")
-    public static WebElement DENY_ALL;
+    public WebElement DENY_ALL;
 
     public CookiesDialog(WebDriver driver) {
         PageFactory.initElements(driver, this);

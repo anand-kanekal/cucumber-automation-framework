@@ -1,6 +1,5 @@
 package com.automation.framework.pages.common;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,10 +15,10 @@ public class SearchComponent {
     WebDriver driver;
 
     @FindBy(css = "input[name='search']")
-    public static WebElement SEARCH_INPUT;
+    public WebElement SEARCH_INPUT;
 
     @FindBy(css = "div[class='result-list']>a")
-    public static List<WebElement> SEARCH_RESULTS;
+    public List<WebElement> SEARCH_RESULTS;
 
     public SearchComponent(WebDriver driver) {
         this.driver = driver;
