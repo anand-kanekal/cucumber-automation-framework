@@ -1,11 +1,11 @@
 package stepdefinitions;
 
-import com.automation.framework.constants.Path;
+import com.automation.framework.core.constant.Path;
 import com.automation.framework.core.browser.DriverHandler;
 import com.automation.framework.pages.common.MenuComponent;
 import com.automation.framework.pages.common.SearchComponent;
 import com.automation.framework.pages.common.dialog.CookiesDialog;
-import com.automation.framework.core.utils.PropertyFileManager;
+import com.automation.framework.core.util.PropertyFileManager;
 import dev.failsafe.internal.util.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

@@ -1,6 +1,5 @@
-package com.automation.framework.core.utils;
+package com.automation.framework.core.util;
 
-import com.automation.framework.core.browser.BrowserManager;
 import com.automation.framework.core.browser.DriverHandler;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;

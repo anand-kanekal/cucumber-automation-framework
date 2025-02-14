@@ -1,7 +1,7 @@
 package com.automation.framework.core.browser;
 
-import com.automation.framework.constants.Path;
-import com.automation.framework.core.utils.PropertyFileManager;
+import com.automation.framework.core.constant.Path;
+import com.automation.framework.core.util.PropertyFileManager;
 import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.UnexpectedAlertBehaviour;

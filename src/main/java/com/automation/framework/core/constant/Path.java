@@ -1,12 +1,10 @@
-package com.automation.framework.constants;
+package com.automation.framework.core.constant;
 
 import java.io.File;
 
 public final class Path {
 	
-	private Path() {
-		
-	}
+	private Path() {}
 
 	public static final String MAIN_RESOURCES = "src" + File.separator + "main" + File.separator + "resources";
 	public static final String TEST_RESOURCES = "src" + File.separator + "test" + File.separator + "resources";
