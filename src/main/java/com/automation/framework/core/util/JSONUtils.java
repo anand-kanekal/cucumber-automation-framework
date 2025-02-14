@@ -11,17 +11,20 @@ import java.util.Map;
 
 public final class JSONUtils {
 
-    private JSONUtils() {}
+    private JSONUtils() {
+    }
 
     public static Map<String, String> convertJSONToObj(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            return objectMapper.readValue(json, new TypeReference<Map<String, String>>(){});
+            return objectMapper.readValue(json, new TypeReference<Map<String, String>>() {
+            });
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to convert JSON to obj\n" + e);
         }
     }
+
     public static <T> T convertJSONToObj(File file, Class<T> obj) {
         ObjectMapper objectMapper = new ObjectMapper();
 
