@@ -1,4 +1,4 @@
-package com.automation.framework.core.constant;
+package framework.constant;
 
 import java.io.File;
 

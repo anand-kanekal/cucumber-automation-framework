@@ -1,7 +1,7 @@
 package stepdefinitions;
 
-import com.automation.framework.core.browser.BrowserManager;
-import com.automation.framework.core.browser.DriverHandler;
+import framework.browser.BrowserManager;
+import framework.browser.DriverHandler;
 import io.cucumber.java.*;
 
 import java.io.IOException;

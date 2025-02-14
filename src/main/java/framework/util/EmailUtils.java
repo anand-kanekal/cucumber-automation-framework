@@ -1,6 +1,6 @@
-package com.automation.framework.core.util;
+package framework.util;
 
-import com.automation.framework.core.constant.Path;
+import framework.constant.Path;
 
 import javax.mail.*;
 import javax.mail.internet.*;

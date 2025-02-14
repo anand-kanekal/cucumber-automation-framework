@@ -1,6 +1,6 @@
-package com.automation.framework.core.util;
+package framework.util;
 
-import com.automation.framework.core.browser.DriverHandler;
+import framework.browser.DriverHandler;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

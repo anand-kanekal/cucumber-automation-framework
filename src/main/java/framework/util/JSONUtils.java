@@ -1,4 +1,4 @@
-package com.automation.framework.core.util;
+package framework.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

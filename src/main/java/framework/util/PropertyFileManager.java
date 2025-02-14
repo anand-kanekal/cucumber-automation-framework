@@ -1,4 +1,4 @@
-package com.automation.framework.core.util;
+package framework.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

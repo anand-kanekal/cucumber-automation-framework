@@ -1,4 +1,4 @@
-package com.automation.framework.pages.common;
+package app.pages.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
